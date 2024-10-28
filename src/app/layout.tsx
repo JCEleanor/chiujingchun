@@ -24,11 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full scroll-smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="text-neutral-400 mx-auto min-h-screen max-w-screen-xl px-5 py-12 font-sans">
+          {children}
+        </div>
       </body>
     </html>
   );
