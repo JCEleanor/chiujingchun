@@ -41,7 +41,7 @@ export default function Home() {
             className="marker:text-sky-400 list-disc list-inside mt-2"
           >
             <li>
-              I am currently a senior software engineer
+              Frontend focused software engineer
               <span className="hover:text-neutral-100">
                 <a
                   href="https://www.shoalter.com/"
@@ -53,9 +53,9 @@ export default function Home() {
                 </a>
               </span>
             </li>
-            <li>I enjoy exploring new technologies</li>
-            <li>I focus on web development (for now)</li>
-            <li>I do not have a CS degree (yet)</li>
+            <li>Bootcamp graduate, mostly self-taught</li>
+            {/* https://cs50.harvard.edu/x/2025/ */}
+            <li>Currently exploring CS fundamentals through CS50</li>
             <li>I used to hate running but now I run (mediocrely)</li>
           </ul>
 
@@ -178,7 +178,7 @@ export default function Home() {
 
           <p className="mb-2">
             I like to think of myself as software—constantly iterating, evolving
-            with each version. Every cycle of growth is both an endpoint and the
+            with each version. Every cycle of growth is both a milestone and the
             start of something new.
           </p>
           <p>
@@ -194,37 +194,47 @@ export default function Home() {
           <div className="border-l-2 border-neutral-600 pt-2 relative">
             {/* Present Position */}
             <div className="flex items-center ml-8 mb-10 relative">
-              <div className="absolute py-1 bg-[#0b132b] top-0 left-[-60px] text-[12px] w-[55px] break-words">
+              <div className="absolute py-1 bg-[#BFC4B1] top-0 left-[-60px] text-[12px] w-[59px] break-words">
                 PRESENT
               </div>
+              <div className=""></div>
               <div className="ml-4">
                 <h3 className="text-xl font-semibold">
-                  Senior Software Engineer @XXX Technology
+                  Software Engineer @XXX Technology
                 </h3>
+                <h6 className="font-thin italic">Sep 2022 - PRESENT</h6>
                 <div className="mt-4 space-y-3">
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sint qui laborum adipisci eos ex itaque assumenda.
-                    Assumenda, ipsa blanditiis?
+                    Lead development of three content management systems with
+                    React and Next for third-party logistics service, enabling
+                    real-time data visualization across five systems and
+                    supporting cross-functional teams in Hong Kong and
+                    Manchester.
                   </p>
                   <p>
-                    Assumenda quod odio eos perspiciatis iure error laboriosam
-                    corporis veritatis optio.
+                    Establish industry standard CI/CD pipelines on Gitlab with
+                    tools such as Docker and kubernetes.
                   </p>
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sint qui laborum adipisci eos ex itaque assumenda.
+                    Improve developer experience by introducing emerging web
+                    technologies such as Pnpm and Vite, reducing build time by
+                    20%.
                   </p>
+                </div>
+                <div className="mt-5">
+                  <div className="inline-block p-2 border text-xs rounded-lg">
+                    Typescript
+                  </div>
                 </div>
               </div>
             </div>
             <div className="flex items-center ml-8 mb-10 relative">
-              <div className="absolute py-1 bg-[#0b132b] top-0 left-[-60px] text-[12px] w-[55px] break-words">
+              <div className="absolute py-1 bg-[#BFC4B1] top-0 left-[-60px] text-[12px] w-[55px] break-words">
                 PRESENT
               </div>
               <div className="ml-4">
                 <h3 className="text-xl font-semibold">
-                  Senior Software Engineer @XXX Technology
+                  Software Engineer @XXX Technology
                 </h3>
                 <div className="mt-4 space-y-3">
                   <p>
