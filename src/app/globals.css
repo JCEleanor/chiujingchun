@@ -7,3 +7,29 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   color: #2d302d
 }
+
+.project-card {
+  display: flex;
+  gap: 20px;
+  background: rgb(245, 245, 240, 20%);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.project-image img {
+  width: 250px;
+  border-radius: 8px;
+}
+
+.project-info {
+  flex: 1;
+}
+
+.tech-stack span {
+  background: #e1e1d0;
+  padding: 6px 12px;
+  margin: 4px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: inline-block;
+}
