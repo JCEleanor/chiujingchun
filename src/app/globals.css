@@ -3,8 +3,19 @@
 @tailwind utilities;
 
 body {
-  background: #BFC4B1;
   font-family: Arial, Helvetica, sans-serif;
-  color: #2d302d
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #2d302d;
+    color: #BFC4B1;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: #BFC4B1;
+    color: #2d302d;
+  }
+}

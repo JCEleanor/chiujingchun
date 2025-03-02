@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 
 const Header = () => {
+  // console.log("header", sessionStorage.getItem("theme"));
+
   return (
     <header>
       <div className="flex gap-6">
