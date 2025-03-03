@@ -19,3 +19,44 @@ body {
     color: #2d302d;
   }
 }
+
+.nav-item {
+  position: relative;
+  padding: 5px 0;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0%;
+  height: 2px;
+  background-color: #8AA172;
+  /* background-color: #a6c288; */
+  transition: width 0.3s ease-in-out;
+  width: 30%;
+}
+
+.nav-item.active::after {
+  /* width: 100%; */
+  /* color: #D4A95E;
+  color: #8AA172;
+  color: #3F6B56;
+  color: #C2A878;
+  color: #A76741;
+  color: #706F3A;
+  color: #A8B79D;
+  color: #C8A150;
+  color: #B88B4A;
+  color: #F4C76C;
+  color: #F6E27F;
+  color: #AA7D2A; */
+/* ; */
+
+
+}
+
+
+
+
