@@ -25,18 +25,6 @@ body {
   padding: 5px 0;
 }
 
-.nav-item::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 0%;
-  height: 2px;
-  background-color: #8AA172;
-  /* background-color: #a6c288; */
-  transition: width 0.3s ease-in-out;
-  width: 30%;
-}
 
 .nav-item.active::after {
   /* width: 100%; */

@@ -3,43 +3,10 @@
 import React from "react";
 import Image from "next/image";
 
-import { useEffect, useState } from "react";
-
-const sections = ["ABOUT", "EXPERIENCE", "PROJECTS"];
+const sections = ["ABOUT", "EXPERIENCE", "PROJECTS", "JOURNAL"];
 
 const Header = () => {
   // console.log("header", sessionStorage.getItem("theme"));
-
-  const [activeSection, setActiveSection] = useState("ABOUT");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      let currentSection = "";
-
-      sections.forEach((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const sectionTop = element.offsetTop;
-          const sectionHeight = element.clientHeight;
-          if (
-            window.scrollY >= sectionTop &&
-            window.scrollY < sectionTop + sectionHeight
-          ) {
-            currentSection = section;
-          } else {
-            // currentSection = "ABOUT";
-          }
-        }
-      });
-
-      setActiveSection(currentSection);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  console.log(activeSection, "activeSection");
 
   return (
     <header>
@@ -87,33 +54,10 @@ const Header = () => {
       </ul>
       <nav className="mt-12 ml-auto">
         {sections.map((s) => (
-          <a
-            key={s}
-            href={`#${s}`}
-            className={activeSection === s ? "nav-item" : ""}
-          >
-            <li
-              className={`${
-                activeSection === s
-                  ? "relative left-[150px] list-none text-[#8AA172] font-semibold italic"
-                  : ""
-              }`}
-            >
-              {s}
-            </li>
+          <a key={s} href={`#${s}`}>
+            <li>{s}</li>
           </a>
         ))}
-        {/* <a href="#ABOUT" className="nav-item">
-          <li className="relative left-[150px] list-none text-[#8AA172] font-semibold italic">
-            ABOUT
-          </li>
-        </a>
-        <a href="#EXPERIENCE">
-          <li>EXPERIENCE</li>
-        </a>
-        <a href="#PROJECTS">
-          <li>PROJECTS</li>
-        </a> */}
       </nav>
     </header>
   );

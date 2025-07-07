@@ -69,7 +69,7 @@ const Links = () => {
             setHoverText(null);
           }}
           onMouseEnter={() => {
-            setHoverText("my boulder account just for fun :D");
+            setHoverText("my bouldering account just for fun :D");
           }}
         />
       </a>
