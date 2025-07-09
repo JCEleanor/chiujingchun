@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { getHackMDNotes } from "../actions/hackmd-actions";
-import type { HackMDNote } from "../lib/hackmd-api";
+import type { HackMDNote } from "../interfaces";
 
 export const JournalSection = () => {
   const [notes, setNotes] = useState<HackMDNote[]>([]);
