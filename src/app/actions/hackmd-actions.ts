@@ -1,6 +1,7 @@
 "use server";
 
-import { fetchHackMDNotes, type HackMDNote } from "../lib/hackmd-api";
+import { HackMDNote } from "../interfaces";
+import { fetchHackMDNotes } from "../lib/hackmd-api";
 
 export async function getHackMDNotes(): Promise<HackMDNote[]> {
   try {
