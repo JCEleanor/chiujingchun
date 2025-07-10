@@ -84,7 +84,7 @@ export const JournalSection = () => {
             {notes.map((note) => (
               <article
                 key={note.id}
-                className="bg-white dark:bg-zinc-900 shadow-sm hover:shadow-lg transition-shadow rounded-xl p-6 border border-zinc-200 dark:border-zinc-800 cursor-pointer"
+                className="bg-white dark:bg-zinc-900 transition-colors rounded-xl p-6 border border-zinc-200 dark:border-zinc-800 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-800"
                 onClick={() => handlePostClick(note.id)}
               >
                 <div className="flex items-start justify-between mb-4">
