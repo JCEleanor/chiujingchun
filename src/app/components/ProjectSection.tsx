@@ -15,7 +15,7 @@ const data = [
   {
     imageSrc: "/personal-site.png",
     imageAlt: "My personal website v1.0",
-    repoLink: "https://github.com/JCEleanor/mywebsite",
+    repoLink: "https://jceleanor.github.io/mywebsite/",
     projectTitle: "Personal Website - June 2021",
     projectDescription: "My first personal website deployed with github pages.",
     skills: ["React", "styled-components"],
