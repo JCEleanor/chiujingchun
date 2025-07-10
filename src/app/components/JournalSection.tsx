@@ -3,11 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { getHackMDNotes } from "../actions/hackmd-actions";
 import type { HackMDNote } from "../interfaces";
+import { useRouter } from "next/navigation";
 
 export const JournalSection = () => {
   const [notes, setNotes] = useState<HackMDNote[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -30,6 +32,10 @@ export const JournalSection = () => {
       month: "long",
       day: "numeric",
     });
+  };
+
+  const handlePostClick = (noteId: string) => {
+    router.push(`/post/hackmd/${noteId}`);
   };
 
   if (loading) {
@@ -78,7 +84,8 @@ export const JournalSection = () => {
             {notes.map((note) => (
               <article
                 key={note.id}
-                className="bg-white dark:bg-zinc-900 shadow-sm hover:shadow-lg transition-shadow rounded-xl p-6 border border-zinc-200 dark:border-zinc-800"
+                className="bg-white dark:bg-zinc-900 shadow-sm hover:shadow-lg transition-shadow rounded-xl p-6 border border-zinc-200 dark:border-zinc-800 cursor-pointer"
+                onClick={() => handlePostClick(note.id)}
               >
                 <div className="flex items-start justify-between mb-4">
                   <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
