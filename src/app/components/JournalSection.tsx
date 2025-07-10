@@ -91,9 +91,6 @@ export const JournalSection = () => {
                   <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
                     {note.title}
                   </h3>
-                  <span className="text-sm text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">
-                    {note.publishType}
-                  </span>
                 </div>
 
                 <div className="flex items-center text-sm text-zinc-600 dark:text-zinc-400 mb-3">

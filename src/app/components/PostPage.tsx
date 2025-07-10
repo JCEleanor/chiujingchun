@@ -3,12 +3,14 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { HackMDNote } from "../interfaces";
+import { useRouter } from "next/navigation";
 
 interface PostPageProps {
   note: HackMDNote;
 }
 
 export const PostPage: React.FC<PostPageProps> = ({ note }) => {
+  const router = useRouter();
   const formatDate = (timestamp: number) => {
     return new Date(timestamp).toLocaleDateString("en-US", {
       year: "numeric",
@@ -21,9 +23,14 @@ export const PostPage: React.FC<PostPageProps> = ({ note }) => {
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
-        {/* TODO: add go back button */}
         <header className="mb-8">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-4 mb-4">
+            <button
+              className="px-4 py-2 rounded bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+              onClick={() => router.back()}
+            >
+              ←
+            </button>
             <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
               {note.title}
             </h1>
@@ -138,7 +145,6 @@ export const PostPage: React.FC<PostPageProps> = ({ note }) => {
             {note.content}
           </ReactMarkdown>
         </article>
-        {/* TODO: add go to top */}
       </div>
     </div>
   );
