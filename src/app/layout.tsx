@@ -17,10 +17,16 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Chiu Jing Chun",
   description: "My personal website",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
@@ -30,10 +36,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="mx-auto min-h-screen max-w-screen-xl px-5 pb-32 pt-12 font-sans">
+        <div className="mx-auto min-h-screen max-w-screen-xl px-5 pb-12 pt-12 font-sans">
           {children}
         </div>
         <Footer />
