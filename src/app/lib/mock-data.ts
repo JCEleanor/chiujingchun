@@ -1,0 +1,112 @@
+import { HackMDNote } from "../interfaces";
+
+export const mockHackMDNotes: HackMDNote[] = [
+  {
+    id: "Ve4F4MqdQUSkn9XvUymvBQ",
+    title:
+      "📓20250501 Work Journal - Dev Frontend Calling Staging API — Root Cause and Solution",
+    tags: ["work journal"],
+    createdAt: 1751864028597,
+    titleUpdatedAt: 1751864373981,
+    tagsUpdatedAt: 1751864377226,
+    publishType: "view",
+    publishedAt: null,
+    permalink: null,
+    publishLink: "https://hackmd.io/@tzd5mg6nRPyzFwHb3Ycriw/H1By7RuHee",
+    shortId: "H1By7RuHee",
+    content: "",
+    lastChangedAt: 1751869165953,
+    lastChangeUser: {
+      name: "Eleanor Chiu",
+      userPath: "tzd5mg6nRPyzFwHb3Ycriw",
+      photo:
+        "https://lh3.googleusercontent.com/a/AEdFTp7Beg5PhRkSDhJ3gOKZQ8WJVvm-MDR8yivb3vzDig=s96-c",
+      biography: null,
+    },
+    userPath: "tzd5mg6nRPyzFwHb3Ycriw",
+    teamPath: null,
+    readPermission: "owner",
+    writePermission: "owner",
+  },
+  {
+    id: "Hg49z2fpSoqfTdfSJCj_OA",
+    title: "Common Kubernetes Commands",
+    tags: ["work journal"],
+    createdAt: 1744795436364,
+    titleUpdatedAt: 1744795452151,
+    tagsUpdatedAt: 1749461827077,
+    publishType: "view",
+    publishedAt: null,
+    permalink: null,
+    publishLink: "https://hackmd.io/@tzd5mg6nRPyzFwHb3Ycriw/HyENDgaAJe",
+    shortId: "HyENDgaAJe",
+    content: "",
+    lastChangedAt: 1749528619988,
+    lastChangeUser: {
+      name: "Eleanor Chiu",
+      userPath: "tzd5mg6nRPyzFwHb3Ycriw",
+      photo:
+        "https://lh3.googleusercontent.com/a/AEdFTp7Beg5PhRkSDhJ3gOKZQ8WJVvm-MDR8yivb3vzDig=s96-c",
+      biography: null,
+    },
+    userPath: "tzd5mg6nRPyzFwHb3Ycriw",
+    teamPath: null,
+    readPermission: "owner",
+    writePermission: "owner",
+  },
+  {
+    id: "DuWCzJ8LT7e-sjRYHjHk3Q",
+    title: "npm ci v.s. npm install",
+    tags: ["work journal"],
+    createdAt: 1749462055575,
+    titleUpdatedAt: 1749462067358,
+    tagsUpdatedAt: 1749462265495,
+    publishType: "view",
+    publishedAt: null,
+    permalink: null,
+    publishLink: "https://hackmd.io/@tzd5mg6nRPyzFwHb3Ycriw/HyeNhQ4Xxx",
+    shortId: "HyeNhQ4Xxx",
+    content: "",
+    lastChangedAt: 1749462347641,
+    lastChangeUser: {
+      name: "Eleanor Chiu",
+      userPath: "tzd5mg6nRPyzFwHb3Ycriw",
+      photo:
+        "https://lh3.googleusercontent.com/a/AEdFTp7Beg5PhRkSDhJ3gOKZQ8WJVvm-MDR8yivb3vzDig=s96-c",
+      biography: null,
+    },
+    userPath: "tzd5mg6nRPyzFwHb3Ycriw",
+    teamPath: null,
+    readPermission: "owner",
+    writePermission: "owner",
+  },
+];
+
+export const mockHackMDNote: HackMDNote = {
+  id: "Ve4F4MqdQUSkn9XvUymvBQ",
+  title:
+    "📓20250501 Work Journal - Dev Frontend Calling Staging API — Root Cause and Solution",
+  tags: ["work journal"],
+  createdAt: 1751864028597,
+  titleUpdatedAt: 1751864373981,
+  tagsUpdatedAt: 1751864377226,
+  publishType: "view",
+  publishedAt: null,
+  permalink: null,
+  publishLink: "https://hackmd.io/@tzd5mg6nRPyzFwHb3Ycriw/H1By7RuHee",
+  shortId: "H1By7RuHee",
+  content:
+    '# 📓 May 1, 2025 Work Journal - When Fast-Forward Merges Broke Our Dev Environment\n\n## 📌 The Problem\n\nOne of our frontend web applications in the development environment unexpectedly started calling staging API endpoints instead of development APIs. This was particularly puzzling because our QA team had just completed testing the latest sprint in the dev environment with no issues reported.\n\nThe incident highlighted a subtle but critical flaw in our container image tagging strategy that could affect any team using similar CI/CD workflows.\n\n## 📌 Technical Context\n\nOur deployment pipeline follows a standard GitOps workflow:\n\n**Architecture:**\n- **Container orchestration:** Kubernetes clusters for dev, staging, and production\n- **Containerization:** Docker with multi-stage builds\n- **CI/CD:** GitLab CI with automated testing and deployment\n- **Configuration management:** Environment-specific `.env` files (no Kubernetes ConfigMaps)\n\n**Git Workflow:**\n```\nFeature branches → dev → QA testing → staging → sanity testing → production release\n```\n\n**Image Tagging Convention:**\nLargely following [GitLab\'s container registry naming convention](https://docs.gitlab.com/user/packages/container_registry/#naming-convention-for-your-container-images), we tag images using commit SHAs:\n```bash\ndocker build -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHA"\n```\n\nThis approach ensures every commit produces a uniquely identifiable image, theoretically preventing deployment conflicts.\n\n## 📌 Investigation Process\n\n### Initial Hypothesis Testing\n1. **Configuration verification:** Checked all `.env` files and build configurations—all appeared correct for respective environments\n2. **Local build testing:** Built the application locally and inspected bundled URLs—no issues detected\n3. **CI pipeline analysis:** Examined GitLab CI logs for the build stage\n\nBuild stage logs showed correct environment targeting:\n```bash\n[.build_docker_image_simple] Building Dockerfile-based application...\n[.build_docker_image_simple] Calling branch name = dev\n#13 [base 4/4] RUN echo "Building for environment: dev"\n#13 0.259 Building for environment: dev\n#15 [build 2/2] RUN npm run build:dev\n```\n\n### The Smoking Gun\nThe deployment stage logs revealed the issue:\n\n**Dev deployment:**\n```bash\n[.build_docker_image_simple] Building registry.com/namespace:c4ea8736\n```\n\n**Staging deployment:**\n```bash\n[.build_docker_image_simple] Building registry.com/namespace:c4ea8736\n```\n\n\nBoth environments were using identical commit SHAs, resulting in the same Docker image tag.\n\n## 📌 Root Cause Analysis\n\nThe issue stemmed from a **fast-forward merge** of the `dev` branch into `staging`. Here\'s the sequence of events:\n\n1. **Fast-forward merge executed:** `git merge dev` on `staging` branch resulted in identical commit SHAs\n2. **Duplicate image tags:** Both environments built images with the same `$CI_COMMIT_SHA` tag\n3. **Registry overwrite:** The staging pipeline (running after dev) overwrote the dev image in the container registry\n4. **Pod update cycle:** When Kubernetes pods updated (due to rolling deployments or restarts), they pulled the "latest" image with that SHA\n5. **Configuration mismatch:** Pods expecting dev configuration received staging-built images with staging API endpoints\n\nThis represents a **race condition** in our deployment pipeline where the last environment to build "wins" and overwrites previous builds with the same tag.\n\n## 📌 Solution Analysis and Implementation\n\n### Option 1: Enforce `--no-ff` Merges ❌\n```bash\ngit config merge.ff false\n```\n\n**Pros:**\n- Minimal codebase changes\n- Ensures unique SHAs for each environment\n\n**Cons:**\n- Cannot enforce via GitLab repository settings due to permission constraints\n- Requires coordination across all team members to maintain consistent Git configuration\n\n**Verdict:** Rejected due to enforcement challenges\n\n### Option 2: Branch-Aware Image Tagging ✅ **[IMPLEMENTED]**\n\nModified the tagging strategy to include branch names:\n```bash\ndocker build -t "$CI_REGISTRY_IMAGE:${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHA}"\n```\n\n**Implementation changes:**\n- **`.gitlab-ci.yml`:** Updated image tagging variables\n- **`deployment.yaml`:** Modified image references to use new format\n    ```\n        spec:\n          containers:\n            - image: {update original format}\n    ```\n- **Custom build scripts:** Updated to handle new naming convention\n\n**Pros:**\n- **Guaranteed uniqueness:** Impossible for different branches to share image tags\n- **Explicit environment identification:** Image names clearly indicate source branch\n\n**Cons:**\n- **Migration effort:** Required updating multiple configuration files\n\n## 📌 Key Takeaways\n\n### Technical Insights\n- **Fast-forward merges can create unexpected dependencies** between environments when using commit-based image tagging\n- **Container registries operate on a "last writer wins" basis**—identical tags will overwrite without warning\n- **GitLab\'s `$CI_COMMIT_REF_SLUG` variable** provides sanitized branch names perfect for tagging\n\n### Process Improvements\n- **Image tagging strategies should account for Git workflow patterns** rather than assuming unique commits\n- **Environment isolation requires more than just configuration differences**—it needs infrastructure-level separation\n- **CI/CD pipelines should fail fast on tag collisions** rather than silently overwriting\n\n### Future Enhancements\n- **Registry webhook notifications** for image overwrites\n- **Deployment validation checks** to verify image contents match expected environment\n- **Automated alerts** when pods pull images with unexpected tags\n\n### Conclusion\nThis issue could affect any team using:\n- SHA-based image tagging with fast-forward merges\n- Shared container registries across multiple environments\n- GitOps workflows with branch-based promotions\n\nThis incident reinforced the importance of treating infrastructure as code with the same rigor as application code—small configuration oversights can have cascading effects across entire deployment pipelines.',
+  lastChangedAt: 1751869165953,
+  lastChangeUser: {
+    name: "Eleanor Chiu",
+    userPath: "tzd5mg6nRPyzFwHb3Ycriw",
+    photo:
+      "https://lh3.googleusercontent.com/a/AEdFTp7Beg5PhRkSDhJ3gOKZQ8WJVvm-MDR8yivb3vzDig=s96-c",
+    biography: null,
+  },
+  userPath: "tzd5mg6nRPyzFwHb3Ycriw",
+  teamPath: null,
+  readPermission: "owner",
+  writePermission: "owner",
+};

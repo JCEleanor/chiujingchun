@@ -10,40 +10,61 @@ async function fetchHackMD<T>(
   cacheKey: string,
   options?: { returnNullOn404?: boolean }
 ): Promise<T | null> {
-  // step 1: check cache first
+  // step 1: check cache first. Only in production environment
   const cached = cache.get<T>(cacheKey);
   if (cached) {
     return cached;
   }
 
-  // step 2: validate API key
-  const apiKey = process.env.HACKMD_API_KEY;
-  if (!apiKey) {
-    throw new Error("HACKMD_API_KEY environment variable is not set");
-  }
+  // step 2: check if use mock data
+  const isUseMockData = process.env.USE_MOCK_DATA === "true";
 
-  try {
-    const response = await fetch(`https://api.hackmd.io/v1${endpoint}`, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-    });
+  if (isUseMockData) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/mock${endpoint}`);
 
-    if (!response.ok) {
-      if (options?.returnNullOn404 && response.status === 404) {
-        return null;
+      if (!response.ok) {
+        if (options?.returnNullOn404 && response.status === 404) {
+          return null;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      throw new Error(`HTTP error! status: ${response.status}`);
+
+      const data: T = await response.json();
+      return data;
+    } catch (error) {
+      console.error(`Error fetching mock data from ${endpoint}:`, error);
+      throw error;
+    }
+  } else {
+    const apiKey = process.env.HACKMD_API_KEY;
+    if (!apiKey) {
+      throw new Error("HACKMD_API_KEY environment variable is not set");
     }
 
-    const data: T = await response.json();
-    cache.set(cacheKey, data);
-    return data;
-  } catch (error) {
-    // TODO: step 3: handle error ui
-    console.error(`Error fetching HackMD data from ${endpoint}:`, error);
-    throw error;
+    try {
+      const response = await fetch(`https://api.hackmd.io/v1${endpoint}`, {
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        if (options?.returnNullOn404 && response.status === 404) {
+          return null;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data: T = await response.json();
+      cache.set(cacheKey, data);
+      return data;
+    } catch (error) {
+      // TODO: step 3: handle error ui
+      console.error(`Error fetching HackMD data from ${endpoint}:`, error);
+      throw error;
+    }
   }
 }
 
