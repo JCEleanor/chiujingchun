@@ -1,0 +1,20 @@
+---
+description: comments format
+globs: "*.ts, *.tsx"
+alwaysApply: false
+---
+
+### General rules
+- Only comment things that have business logic complexity.
+- Comments are an apology, not a requirement. Good code mostly documents itself.
+
+### Format
+- Must start with a lowercase character and without a period at the end.
+- When there are multiple steps, please use the following format:
+```
+Step 1: check cache
+Step 2: validate response
+```
+
+### Reference
+https://github.com/ryanmcdermott/clean-code-javascript?tab=readme-ov-file#comments

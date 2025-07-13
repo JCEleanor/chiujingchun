@@ -1,6 +1,6 @@
 ---
 description: git commit conventions
-globs:
+globs: 
 alwaysApply: false
 ---
 
@@ -52,3 +52,6 @@ feat: allow provided config object to extend other configs
 
 BREAKING CHANGE: `extends` key in config file is now used for extending other config files
 ```
+
+## Important
+ONLY COMMIT BUT NEVER PUSH TO REMOTE REPOSITORY.
