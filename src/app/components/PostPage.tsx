@@ -4,6 +4,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import { HackMDNote } from "../interfaces";
 import { useRouter } from "next/navigation";
+import { formatDate } from "../utils";
 
 interface PostPageProps {
   note: HackMDNote;
@@ -11,13 +12,6 @@ interface PostPageProps {
 
 export const PostPage: React.FC<PostPageProps> = ({ note }) => {
   const router = useRouter();
-  const formatDate = (timestamp: number) => {
-    return new Date(timestamp).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -39,9 +33,9 @@ export const PostPage: React.FC<PostPageProps> = ({ note }) => {
           <div className="flex items-center text-sm text-zinc-600 dark:text-zinc-400 mb-4">
             <span>By {note.lastChangeUser.name}</span>
             <span className="mx-2">•</span>
-            <span>Created: {formatDate(note.createdAt)}</span>
+            <span>Created: {formatDate(note.createdAt, "long")}</span>
             <span className="mx-2">•</span>
-            <span>Updated: {formatDate(note.lastChangedAt)}</span>
+            <span>Updated: {formatDate(note.lastChangedAt, "long")}</span>
           </div>
 
           {note.tags && note.tags.length > 0 && (
