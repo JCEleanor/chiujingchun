@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Links from "./components/Links";
 import ExperienceSection from "./components/ExperienceSection";
 import { ProjectSection } from "./components/ProjectSection";
-import { JournalSection } from "./components/JournalSection";
+import { JournalSection } from "./components/journal-section";
 
 export default function Home() {
   return (
