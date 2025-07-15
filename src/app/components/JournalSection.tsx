@@ -23,14 +23,13 @@ export const JournalSection = () => {
         setLoading(false);
       }
     };
-
     fetchNotes();
   }, []);
 
   const formatDate = (timestamp: number) => {
     return new Date(timestamp).toLocaleDateString("en-US", {
       year: "numeric",
-      month: "long",
+      month: "short",
       day: "numeric",
     });
   };
@@ -42,12 +41,8 @@ export const JournalSection = () => {
 
   if (loading) {
     return (
-      <section
-        className="mt-20 scroll-mt-32 bg-background text-foreground"
-        id="JOURNAL"
-      >
+      <section className="mt-20 scroll-mt-32" id="JOURNAL">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6">Journal</h2>
           <div className="flex items-center justify-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-zinc-100"></div>
             <span className="ml-3">Loading posts...</span>
@@ -59,12 +54,8 @@ export const JournalSection = () => {
 
   if (error) {
     return (
-      <section
-        className="mt-20 scroll-mt-32 bg-background text-foreground"
-        id="JOURNAL"
-      >
+      <section className="mt-20 scroll-mt-32" id="JOURNAL">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6">Journal</h2>
           <div className="text-red-600 p-4 bg-red-50 dark:bg-red-900/20 rounded">
             <p>Error loading posts: {error}</p>
           </div>
@@ -74,21 +65,45 @@ export const JournalSection = () => {
   }
 
   return (
-    <section
-      className="mt-20 scroll-mt-32 bg-background text-foreground"
-      id="JOURNAL"
-    >
+    <section className="mt-20 scroll-mt-32" id="JOURNAL">
       <div className="max-w-2xl mx-auto">
         {notes.length === 0 ? (
           <p className="text-gray-600 dark:text-zinc-400">No posts found.</p>
         ) : (
-          <div className="grid gap-6">
+          <div className="flex flex-col gap-6">
             {notes.map((note) => (
-              <article
+              <div
                 key={note.id}
-                className="bg-white dark:bg-zinc-900 transition-colors rounded-xl p-6 border border-zinc-200 dark:border-zinc-800 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-800 relative"
+                className="cursor-pointer group"
                 onClick={() => handlePostClick(note.id)}
               >
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100 mb-1 group-hover:opacity-70 group-hover:border-b group-hover:border-dashed group-hover:border-zinc-900 dark:group-hover:border-zinc-100 transition-all">
+                    {note.title}
+                  </h3>
+                  <svg
+                    className="w-4 h-4 text-zinc-900 dark:text-zinc-100 opacity-0 group-hover:opacity-100 transition-opacity"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </div>
+                <div className="flex items-center text-sm text-zinc-600 dark:text-zinc-400">
+                  <span>{formatDate(note.createdAt)}</span>
+                  {note.tags && note.tags.length > 0 && (
+                    <>
+                      <span className="mx-2">*</span>
+                      <span>{note.tags[0]}</span>
+                    </>
+                  )}
+                </div>
                 {loadingPostId === note.id && (
                   <div className="absolute inset-0 bg-zinc-100/80 dark:bg-zinc-900/80 flex flex-col items-center justify-center z-10 rounded-xl">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-zinc-900 dark:border-zinc-100 mb-2"></div>
@@ -97,45 +112,7 @@ export const JournalSection = () => {
                     </span>
                   </div>
                 )}
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-2">
-                    {note.title}
-                  </h3>
-                </div>
-
-                <div className="flex items-center text-sm text-zinc-600 dark:text-zinc-400 mb-3">
-                  <span>By {note.lastChangeUser.name}</span>
-                  <span className="mx-2">•</span>
-                  <span>{formatDate(note.createdAt)}</span>
-                </div>
-
-                {note.tags &&
-                  note.tags.includes("work journal") &&
-                  note.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {note.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                <div className="text-zinc-700 dark:text-zinc-200 line-clamp-3">
-                  {note.content.length > 200
-                    ? `${note.content.substring(0, 200)}...`
-                    : note.content}
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                  <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
-                    <span>Last updated: {formatDate(note.lastChangedAt)}</span>
-                  </div>
-                </div>
-              </article>
+              </div>
             ))}
           </div>
         )}
