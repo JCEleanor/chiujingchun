@@ -4,23 +4,26 @@ import Links from "./components/Links";
 import ExperienceSection from "./components/ExperienceSection";
 import { ProjectSection } from "./components/ProjectSection";
 import { JournalSection } from "./components/journal-section";
+import { PageTransitionLayout } from "./components/PageTransitionLayout";
 
 export default function Home() {
   return (
-    <div>
-      <div className="flex flex-col justify-between top-[8rem] h-[80vh] fixed">
-        <Header />
-        <div className="flex gap-2 text-3xl items-center">
-          <Links />
+    <PageTransitionLayout>
+      <div>
+        <div className="flex flex-col justify-between top-[8rem] h-[80vh] fixed">
+          <Header />
+          <div className="flex gap-2 text-3xl items-center">
+            <Links />
+          </div>
         </div>
-      </div>
 
-      <main className="pt-20 ml-[50%]">
-        <AboutSection />
-        <ExperienceSection />
-        <ProjectSection />
-        <JournalSection />
-      </main>
-    </div>
+        <main className="pt-20 ml-[50%]">
+          <AboutSection />
+          <ExperienceSection />
+          <ProjectSection />
+          <JournalSection />
+        </main>
+      </div>
+    </PageTransitionLayout>
   );
 }

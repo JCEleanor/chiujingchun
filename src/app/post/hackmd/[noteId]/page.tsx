@@ -1,6 +1,7 @@
 import { getHackMDNoteById } from "../../../actions/hackmd-actions";
 import { PostPage } from "../../../components/PostPage";
 import { notFound } from "next/navigation";
+import { PageTransitionLayout } from "../../../components/PageTransitionLayout";
 
 interface PageProps {
   params: Promise<{
@@ -18,7 +19,11 @@ export default async function PostPageRoute({ params }: PageProps) {
       notFound();
     }
 
-    return <PostPage note={note} />;
+    return (
+      <PageTransitionLayout>
+        <PostPage note={note} />
+      </PageTransitionLayout>
+    );
   } catch (error) {
     console.error("Error fetching note:", error);
     notFound();
