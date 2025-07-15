@@ -21,7 +21,7 @@ export const PostPage: React.FC<PostPageProps> = ({ note }) => {
           <div className="flex items-center gap-4 mb-4">
             <button
               className="px-4 py-2 rounded bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors"
-              onClick={() => router.back()}
+              onClick={() => router.push("/")}
             >
               ←
             </button>
