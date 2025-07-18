@@ -9,21 +9,20 @@ import { PageTransitionLayout } from "./components/PageTransitionLayout";
 export default function Home() {
   return (
     <PageTransitionLayout>
-      <div>
-        <div className="flex flex-col justify-between top-[8rem] h-[80vh] fixed">
-          <Header />
-          <div className="flex gap-2 text-3xl items-center">
-            <Links />
-          </div>
+      {/* HEADER */}
+      <div className="flex flex-col justify-between top-[8rem] h-[80vh] fixed">
+        <Header />
+        <div className="flex gap-2 text-3xl items-center">
+          <Links />
         </div>
-
-        <main className="pt-20 ml-[50%]">
-          <AboutSection />
-          <ExperienceSection />
-          <ProjectSection />
-          <JournalSection />
-        </main>
       </div>
+      {/* MAIN */}
+      <main className="pt-20 ml-[50%]">
+        <AboutSection />
+        <ExperienceSection />
+        <ProjectSection />
+        <JournalSection />
+      </main>
     </PageTransitionLayout>
   );
 }
