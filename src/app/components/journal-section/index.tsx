@@ -17,7 +17,10 @@ export const JournalSection = () => {
   }
 
   return (
-    <section className="mt-20 scroll-mt-32" id="JOURNAL">
+    <section
+      className="mt-20 scroll-mt-32 h-[500px] overflow-y-scroll subtle-scrollbar"
+      id="JOURNAL"
+    >
       <div className="max-w-2xl mx-auto">
         {notes.length === 0 ? (
           <p className="text-gray-600 dark:text-zinc-400">No posts found.</p>
