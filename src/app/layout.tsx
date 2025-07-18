@@ -44,7 +44,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ScrollToTop />
-        <div className="mx-auto min-h-screen max-w-screen-xl px-5 pb-12 pt-12 font-sans">
+        <div className="mx-auto min-h-screen max-w-screen-xl pt-12 font-sans">
           {children}
         </div>
         <Footer />
