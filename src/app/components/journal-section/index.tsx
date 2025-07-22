@@ -18,7 +18,7 @@ export const JournalSection = () => {
 
   return (
     <section
-      className="mt-20 scroll-mt-32 h-[500px] overflow-y-scroll subtle-scrollbar"
+      className="my-20 scroll-mt-32 h-[500px] overflow-y-scroll subtle-scrollbar"
       id="JOURNAL"
     >
       <div className="max-w-2xl mx-auto">
@@ -33,7 +33,7 @@ export const JournalSection = () => {
                 className="cursor-pointer group transition-colors duration-150"
               >
                 <Title title={note.title} />
-                <div className="flex items-center text-sm text-zinc-600 dark:text-zinc-400">
+                <div className="flex items-center text-sm text-zinc-600 dark:text-zinc-400 mt-1">
                   <Date timestamp={note.createdAt} />
                   <Tags tags={note.tags || []} />
                 </div>

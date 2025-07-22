@@ -7,7 +7,7 @@ export interface HackMDNote {
   titleUpdatedAt: number;
   tagsUpdatedAt: number;
   publishType: "view" | "edit" | "slide" | "book";
-  publishedAt: string | null;
+  publishedAt: number | null;
   permalink: string | null;
   publishLink: string;
   shortId: string;
