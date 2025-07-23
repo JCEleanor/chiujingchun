@@ -30,7 +30,7 @@ export const JournalSection = () => {
               <Link
                 key={note.id}
                 href={`/post/hackmd/${note.id}`}
-                className="cursor-pointer group transition-colors duration-150"
+                className="cursor-pointer group"
               >
                 <Title title={note.title} />
                 <div className="flex items-center text-sm text-zinc-600 dark:text-zinc-400 mt-1">

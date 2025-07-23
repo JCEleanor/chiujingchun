@@ -4,12 +4,12 @@ interface TitleProps {
 
 export const Title = ({ title }: TitleProps) => {
   return (
-    <div className="flex items-center gap-2">
-      <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100 mb-1 group-hover:opacity-70 group-hover:border-b group-hover:border-dashed group-hover:border-zinc-900 dark:group-hover:border-zinc-100 transition-all">
+    <div className="flex items-center gap-2 mb-1">
+      <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100 mb-1 border-b-2 border-b-transparent group-hover:opacity-70 group-hover:border-b-2 group-hover:border-dashed group-hover:border-zinc-900 dark:group-hover:border-zinc-100">
         {title}
       </h3>
       <svg
-        className="w-4 h-4 text-zinc-900 dark:text-zinc-100 opacity-0 group-hover:opacity-100 transition-opacity"
+        className="w-4 h-4 text-zinc-900 dark:text-zinc-100 opacity-0 group-hover:opacity-100"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
