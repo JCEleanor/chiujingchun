@@ -3,7 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { useJournalData } from "./api";
-import { Loading, Error, Title, Date, Tags } from "./components";
+import { Loading, Error, Title, Date } from "./components";
+import { Tags } from "../common/Tags";
 
 export const JournalSection = () => {
   const { notes, loading, error } = useJournalData();
@@ -35,7 +36,9 @@ export const JournalSection = () => {
                 <Title title={note.title} />
                 <div className="flex items-center text-sm text-zinc-600 dark:text-zinc-400 mt-1">
                   <Date timestamp={note.createdAt} />
-                  <Tags tags={note.tags || []} />
+                  <div className="flex gap-1 ml-2">
+                    <Tags tags={note.tags || []} />
+                  </div>
                 </div>
               </Link>
             ))}

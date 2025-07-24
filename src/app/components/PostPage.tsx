@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { HackMDNote } from "../interfaces";
 import { useRouter } from "next/navigation";
 import { formatDate } from "../utils";
+import { Tags } from "./common/Tags";
 
 interface PostPageProps {
   note: HackMDNote;
@@ -40,14 +41,7 @@ export const PostPage: React.FC<PostPageProps> = ({ note }) => {
 
           {note.tags && note.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6">
-              {note.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 text-xs px-3 py-1 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
+              <Tags tags={note.tags || []} />
             </div>
           )}
         </header>
