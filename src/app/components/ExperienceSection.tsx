@@ -13,12 +13,12 @@ interface IExperience {
 const data: IExperience[] = [
   {
     jobTitle: "Senior Software Engineer @Shoalter Technology",
-    duration: "Sep 2022 - PRESENT (Prmoted Within 19 months)",
+    duration: "Sep 2022 - June 2025 (Prmoted Within 19 months)",
     bulletPoints: [
-      "Lead development of three content management systems with React and Next for third-party logistics service, enabling real-time data visualization across five systems and supporting cross-functional teams in Hong Kong and Manchester.",
-      "Establish industry standard CI/CD pipelines on Gitlab with tools such as Docker and kubernetes.",
-      "Perform unit and end-to-end testing with Jest, Cypress, and Mock Service Worker, preventing regressions and improving development confidence during iterations.",
-      "Improve developer experience by introducing emerging web technologies such as Pnpm and Vite, reducing build time by 20%.",
+      "Leaded development of three content management systems with React and Next for third-party logistics service, enabling real-time data visualization across five systems and supporting cross-functional teams in Hong Kong and Manchester.",
+      "Established industry standard CI/CD pipelines on Gitlab with tools such as Docker and kubernetes.",
+      "Performed unit and end-to-end testing with Jest, Cypress, and Mock Service Worker, preventing regressions and improving development confidence during iterations.",
+      "Improved developer experience by introducing emerging web technologies such as Pnpm and Vite, reducing build time by 20%.",
     ],
     skills: [
       "Typescript",

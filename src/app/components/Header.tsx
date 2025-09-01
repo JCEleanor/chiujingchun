@@ -35,21 +35,43 @@ const Header = () => {
         className="marker:text-sky-400 list-disc list-inside mt-2"
       >
         <li>
-          Frontend focused software engineer
+          Current CS grad student
           <span className="hover:text-neutral-100">
+            <a
+              href="https://www.mines.edu/"
+              target="_blank"
+              rel="noreferrer"
+              title="Colorado School of Mines"
+            >
+              &nbsp;@Colorado School of Mines
+            </a>
+          </span>
+        </li>
+        <li>
+          Former software engineer at
+          <span>
             <a
               href="https://www.shoalter.com/"
               target="_blank"
               rel="noreferrer"
               title="Shoalter Technology"
+              className="hover:text-neutral-100"
             >
-              &nbsp;@Shoalter Technology
+              &nbsp;Shoalter Technology
+            </a>
+            &nbsp;&
+            <a
+              href="https://24h.pchome.com.tw/"
+              target="_blank"
+              rel="noreferrer"
+              title="PChome"
+              className="hover:text-neutral-100"
+            >
+              &nbsp;PChome
             </a>
           </span>
         </li>
-        <li>Bootcamp graduate, mostly self-taught</li>
-        {/* https://cs50.harvard.edu/x/2025/ */}
-        <li>Currently exploring CS fundamentals through CS50</li>
+        <li>Experience and enthusiasm for DevOps: Docker, K8s, Linux</li>
         <li>I used to hate running but now I run (mediocrely)</li>
       </ul>
       <nav className="mt-12 ml-auto">
