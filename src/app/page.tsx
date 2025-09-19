@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <PageTransitionLayout>
-        <div className="flex flex-col justify-between h-[80vh] fixed top-[8rem]">
+        <div className="flex flex-col justify-between h-[80vh] fixed pt-20">
           <Header />
           <div className="flex gap-2 text-3xl items-center">
             <Links />
