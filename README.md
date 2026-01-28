@@ -1,5 +1,12 @@
 # Personal Website 2024
 
+## Overview
+My personal website where this is my first time using LLMs to do vibe coding.
+I put all of my instructions as markdown files in a desginated folder, where I code as I refined my instructions. By the end of this project, I stopped writing those instructions on my own; instead, I co-created a template with Gemini CLI and used it to generate instructions. 
+
+P.S. midway through the project I jumped ship from Cursor to Geminni CLI just because it integrate with my workflow better.
+
+
 ## Tech Stack
 
 - Next.js for the framework
